@@ -24,8 +24,6 @@ ENTRYPOINT ["sh", "./entrypoint.sh"]
 
 COPY ./Pipfile* ./
 
-RUN pipenv lock
-
 RUN pipenv install --system --dev
 
 # final

@@ -14,9 +14,6 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-# Environment
-getenv = os.environ.get
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,20 +21,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenv('SECRET_KEY', 'vprivdqj73$!i7kt3pc&psmk#!91g3k9p!s(9!%889xke)ds5(')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'vprivdqj73$!i7kt3pc&psmk#!91g3k9p!s(9!%889xke)ds5(')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 # Application definition
 
 INSTALLED_APPS = [
     'users',
 
-    'drf_yasg',
     'rest_framework',
+    'rest_framework.authtoken',
+    'drf_yasg',
+    'djoser',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -83,11 +82,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': getenv('DATABASE_NAME'),
-        'USER': getenv('DATABASE_USER'),
-        'PASSWORD': getenv('DATABASE_PASSWORD'),
-        'HOST': getenv('DATABASE_HOST'),
-        'PORT': getenv('DATABASE_POST'),
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_POST'),
     }
 }
 
@@ -130,4 +129,33 @@ MEDIA_ROOT = BASE_DIR / 'media'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+# Simple JWT
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ['JWT'],
+}
+
+if DEBUG:
+    SIMPLE_JWT.update({
+        'ACCESS_TOKEN_LIFETIME': timedelta(days=1)
+    })
+
+
+# Drf yasg
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'apiKey': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'Example authorization header:\n`Authorization: JWT a01b23c45d67e89f`',
+        }
+    },
 }
