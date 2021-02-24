@@ -32,11 +32,14 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 INSTALLED_APPS = [
     'users',
+    'posts',
 
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
     'djoser',
+    'ckeditor',
+    'ckeditor_uploader',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -159,3 +162,7 @@ SWAGGER_SETTINGS = {
         }
     },
 }
+
+# CKEditor
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
