@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
+from posts.filtersets import LikeFilterSet
 from posts.models import Post, Like
 from posts.serializers import PostSerializer, LikeSerializer
 
@@ -38,3 +39,4 @@ class LikeViewSet(ReadOnlyModelViewSet):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
     permission_classes = [IsAuthenticated]
+    filterset_class = LikeFilterSet
