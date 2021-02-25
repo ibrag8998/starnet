@@ -23,11 +23,11 @@ class Post(models.Model):
     def __str__(self):
         return self.get_cut_content()
 
-    @short_description("content")
+    @short_description(_("content"))
     def get_cut_content(self):
         return strip_tags(unescape(Truncator(self.content).words(20, html=True, truncate=' …')))
 
-    @short_description("likes amount")
+    @short_description(_("likes amount"))
     def get_likes_amount(self):
         return self.likes.count()
 

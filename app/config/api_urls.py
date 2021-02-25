@@ -14,6 +14,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', include('users.urls')),
+    path('', include('posts.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger'),  # noqa
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='redoc'),  # noqa
