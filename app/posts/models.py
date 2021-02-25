@@ -21,6 +21,10 @@ class Post(models.Model):
         verbose_name_plural = _("posts")
 
     def __str__(self):
+        return self.get_cut_content()
+
+    @short_description("content")
+    def get_cut_content(self):
         return strip_tags(unescape(Truncator(self.content).words(20, html=True, truncate=' …')))
 
     @short_description("likes amount")

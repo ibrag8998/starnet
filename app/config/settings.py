@@ -108,11 +108,13 @@ AUTH_USER_MODEL = 'users.User'
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
-
+USE_TZ = True
 TIME_ZONE = 'Europe/Moscow'
 
-USE_TZ = True
+USE_I18N = True
+USE_L10N = True
+LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = [BASE_DIR / 'locale']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -147,7 +149,6 @@ if DEBUG:
     SIMPLE_JWT.update({
         'ACCESS_TOKEN_LIFETIME': timedelta(days=1)
     })
-
 
 # Drf yasg
 
