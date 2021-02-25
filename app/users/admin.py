@@ -15,5 +15,5 @@ class UserAdmin(ContribUserAdmin):
         (_("Permissions"), {'fields': ['is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions']}),
         (_("Important dates"), {'fields': ['last_login', 'date_joined']}),
     ]
-    list_display = ['username', 'email', 'full_name', 'is_staff']
+    list_display = ['username', 'email', 'full_name', 'is_staff', 'last_request']
     search_fields = ['username', 'full_name', 'email']
