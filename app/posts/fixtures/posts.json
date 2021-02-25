@@ -1,0 +1,29 @@
+[
+  {
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+      "author": null,
+      "content": "<h1>StarNavi employment</h1>\r\n\r\n<p>...</p>",
+      "created_at": "2021-02-25T08:27:20.126Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+      "author": null,
+      "content": "<h1>Xiaomi cannot boot</h1>\r\n\r\n<p>If your xiaomi cannot boot, take it to the service center.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Hope you enjoyed this guide, don&#39;t forget to subscribe.</p>",
+      "created_at": "2021-02-25T08:28:59.828Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+      "author": null,
+      "content": "<h1>How to not run out of&nbsp;ideas</h1>\r\n\r\n<p>Write your ideas and don&#39;t deceive yourself relying on&nbsp;your memory</p>",
+      "created_at": "2021-02-25T08:31:02.005Z"
+    }
+  }
+]
