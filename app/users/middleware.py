@@ -4,7 +4,6 @@ class RequestLoggingMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-        user = request.user
-        if user.is_authenticated:
-            user.update_last_request()
+        if request.user.is_authenticated:
+            request.user.update_last_request()
         return response

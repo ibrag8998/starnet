@@ -51,8 +51,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'users.middleware.RequestLoggingMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # This middleware must come at the bottom, so `request.user.is_authenticated` won't raise AttributeError
+    'users.middleware.RequestLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'

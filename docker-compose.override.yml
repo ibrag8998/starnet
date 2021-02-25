@@ -2,8 +2,6 @@ version: '3.7'
 
 services:
   app:
-    build:
-      dockerfile: Dockerfile.local
     environment:
       - DEBUG=1
       - ALLOWED_HOSTS=*
