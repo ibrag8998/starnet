@@ -2,9 +2,11 @@
 
 ## How to run?
 
-> You need `docker` and `docker-compose` preinstalled on your machine.
+> You must have `docker` and `docker-compose` preinstalled on your machine.
 
 ```shell
+git clone https://github.com/ibrag8998/starnet.git
+cd starnet
 docker-compose up
 ```
 
@@ -16,6 +18,8 @@ and here are some links:
 - [Admin Panel](http://localhost/admin) (`/admin`)
 
 ## Quickly test service.
+
+Use [starnetbot](https://github.com/ibrag8998/starnetbot) or do it manually:
 
 ```shell
 docker-compose up -d

@@ -5,7 +5,7 @@ def short_description(text: str):
     """
     Example:
 
-        >>> @short_description('full name')
+        >>> @short_description("full name")
         ... def get_full_name(self):
         ...     return ...
     """
@@ -21,6 +21,7 @@ class AddFieldsetsMixin:
     """
     The idea was taken from `django.contrib.auth.admin.UserAdmin`
     """
+
     add_fieldsets: List[
         Tuple[
             Optional[str],
