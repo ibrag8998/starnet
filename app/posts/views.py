@@ -6,6 +6,7 @@ from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 from posts.filtersets import LikeFilterSet
 from posts.models import Post, Like
+from posts.permissions import IsPostAuthor, IsLikeAuthor
 from posts.serializers import PostSerializer, LikeSerializer
 
 
@@ -13,6 +14,11 @@ class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        if self.action in ['update', 'partial_update', 'delete']:
+            self.permission_classes = [IsPostAuthor]
+        return super().get_permissions()
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -40,3 +46,8 @@ class LikeViewSet(ReadOnlyModelViewSet):
     serializer_class = LikeSerializer
     permission_classes = [IsAuthenticated]
     filterset_class = LikeFilterSet
+
+    def get_permissions(self):
+        if self.action in ['update', 'partial_update', 'delete']:
+            self.permission_classes = [IsLikeAuthor]
+        return super().get_permissions()
